@@ -1,4 +1,4 @@
-# vue打造商城
+# vue打造商城项目
 
 #### Description
 通过使用vue全家桶打造商城
