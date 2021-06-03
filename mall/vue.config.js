@@ -1,3 +1,8 @@
 module.exports = {
-  lintOnSave: false
+  lintOnSave: false, // eslint 不生效
+  
+  devServer: {
+    host:'localhost',
+    port: 8080,
+  }
 }
