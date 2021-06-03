@@ -5,10 +5,17 @@
 </template>
 
 <script>
+import storage from './storage/index'
+export default {
+  data () {
+    return {
 
-  export default {
-
-  }
+    }
+  },
+  mounted() {
+    
+  },
+}
 </script>
 
 <style>
