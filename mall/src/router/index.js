@@ -9,6 +9,7 @@ import Order from '../pages/order.vue'
 import OrderConfirm from '../pages/orderConfirm.vue'
 import OrderList from '../pages/orderList.vue'
 import OrderPay from '../pages/orderPay.vue'
+import Alipay from '../pages/alipay.vue'
 
 
 Vue.use(VueRouter)
@@ -18,19 +19,20 @@ const routes = [
     path: '/',
     name: 'home',
     component: Home,
+    redirect: '/index',
     children: [
       {
-        path: '/index',
+        path: 'index',
         name: 'index',
         component: Index
       },
       {
-        path: '/product/:id',
+        path: 'product/:id',
         name: 'product',
         component: Product
       },
       {
-        path: '/detail/:id',
+        path: 'detail/:id',
         name: 'detail',
         component: Detail
       }
@@ -47,20 +49,25 @@ const routes = [
     component: Order,
     children: [
       {
-        path: '/confirm',
+        path: 'confirm',
         name: 'order-confirm',
         component: OrderConfirm
       },
       {
-        path: '/list',
+        path: 'list',
         name: 'order-list',
         component: OrderList
       },
       {
-        path: '/pay',
+        path: 'pay',
         name: 'order-pay',
         component: OrderPay
       },
+      {
+        path: 'alipay',
+        name: 'alipay',
+        component: Alipay
+      }
     ]
   }
 ]
