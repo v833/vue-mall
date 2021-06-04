@@ -6,7 +6,7 @@ import axios from 'axios' // 每个页面都要去写，导入
 import VueAxios from 'vue-axios' // 作用域对象挂载在vue实例上
 import env from './env'
 
-const mock = true; // 希望mock开关打开时被拦截，用require而不是import
+const mock = false; // 希望mock开关打开时被拦截，用require而不是import
 if (mock) {
   // import 预编译加载 require 执行加载，如果未需要，不加载
   require('./mock/api')

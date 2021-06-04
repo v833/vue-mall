@@ -19,9 +19,9 @@ export default {
     // })
 
     // 本地集成mockjs实现数据mock 没有发送真正的请求，代码阶段拦截
-    this.axios.get('/user/login').then(res => {
-      this.res = res
-    })
+    // this.axios.get('/user/login').then(res => {
+    //   this.res = res
+    // })
   },
 }
 </script>

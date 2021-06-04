@@ -7,7 +7,7 @@ module.exports = {
     proxy: {
       // /search/hotwords
       '/api': {
-        target: 'https://www.imooc.com/',
+        target: 'http://mall-pre.springboot.cn',
         changeOrigin: true,
         pathRewrite: {
           '/api': ''
