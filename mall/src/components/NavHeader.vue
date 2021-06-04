@@ -9,9 +9,11 @@
           <a href="javascript:;">协议规则</a>
         </div>
         <div class="topbar-user">
-          <a href="javascript:;">登录</a>
-          <a href="javascript:;">注册</a>
-          <a href="javascript:;" class="my-cart"><span class="icon-cart"></span>购物车</a>
+          <a href="javascript:;" v-if="username">{{username}}</a>
+          <a href="javascript:;" v-else @click="login()">登录</a>
+          <a href="javascript:;" v-if="username">我的订单</a>
+          <a href="javascript:;" v-else>注册</a>
+          <a href="javascript:;" class="my-cart" @click="goToCart()"><span class="icon-cart"></span>购物车</a>
         </div>
       </div>
     </div>
@@ -117,7 +119,7 @@ export default {
   name: 'nav-header',
   data () {
     return {
-      username: 'jack',
+      username: '',
       phoneList: [],
     }
   },
@@ -141,6 +143,12 @@ export default {
           this.phoneList = res.list.slice(0, 6)
         }
       })
+    },
+    goToCart () {
+      this.$router.push('/cart')
+    },
+    login () {
+      this.$router.push('/login')
     }
   },
 }
