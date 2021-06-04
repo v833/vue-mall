@@ -1,12 +1,13 @@
-let baseURL; // 用cors 和 jsons 使用
+let baseURL;
+ // 用cors 和 jsons 使用
 switch (process.env.NODE_ENV) { // nodejs 的环境变量
-  case 'dev':
+  case 'development':
     baseURL = 'http://dev-mall-pre.springboot.cn/api'
     break;
   case 'test':
     baseURL = 'http://test-mall-pre.springboot.cn/api'
     break;
-  case 'prod':
+  case 'production':
     baseURL = 'http://mall-pre.springboot.cn/api'
     break;
     default:
