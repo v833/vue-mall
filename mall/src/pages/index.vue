@@ -24,8 +24,6 @@
 import { swiper, swiperSlide} from 'vue-awesome-swiper' // swiper组件很大，按需加载
 import 'swiper/dist/css/swiper.css'
 import ServiceBar from '../components/ServiceBar.vue'
-import { swiper, swiperSlide} from 'vue-awesome-swiper'
-import 'swiper/dist/css/swiper.css'
 export default {
   name: 'index',
   components: { 
