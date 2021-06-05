@@ -1,4 +1,3 @@
-// flex 布局复用
 @mixin flex ($hov:space-between, $col: center) {
   display: flex;
   justify-content: $hov;
@@ -11,5 +10,12 @@
   height: $h;
   background: url($img) no-repeat center;
   background-size: $size;
-  // vertical-align: middle;
+}
+
+@mixin position($pos: absolute, $top: 0, $left: 0, $w: 100%, $h: 100%) {
+  position: $pos;
+  top: $top;
+  left: $left;
+  width: $w;
+  height: $h
 }

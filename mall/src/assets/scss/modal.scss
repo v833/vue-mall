@@ -1,0 +1,10 @@
+@import './config.scss';
+@import './mixin.scss';
+.modal {
+  @include position(fixed);
+  .mask {
+    @include position(fixed);
+    background-color: $colorI;
+    opacity: .5;
+  }
+}

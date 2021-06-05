@@ -90,14 +90,14 @@
       </div>
   </div>
     <service-bar></service-bar>
-    <modal 
+    <modal
       title="提示"
       sureText="查看详情"
       btnType="1"
       modalType="middle"
       :showModal="showModal">
       <template #body> <p>商品添加成功！</p> </template>
-      </modal>
+    </modal>
   </div>
 </template>
 
@@ -105,14 +105,14 @@
 import { swiper, swiperSlide} from 'vue-awesome-swiper' // swiper组件很大，按需加载
 import 'swiper/dist/css/swiper.css'
 import ServiceBar from '../components/ServiceBar.vue'
-import Model from '../components/Modal'
+import Modal from '../components/Modal.vue'
 export default {
   name: 'index',
   components: { 
     ServiceBar,
     swiper,
     swiperSlide,
-    Model
+    Modal
   },
   data () {
     return {
@@ -196,7 +196,8 @@ export default {
           img: '/imgs/ads/ads-4.jpg',
         }
       ],
-      phoneList: []
+      phoneList: [],
+      showModal: true
     }
   },
   methods: {
