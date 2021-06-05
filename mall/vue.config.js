@@ -3,7 +3,7 @@ module.exports = {
   
   devServer: {
     host:'localhost',
-    port: 8082,
+    port: 8083,
     proxy: {
       // /search/hotwords
       '/api': {
