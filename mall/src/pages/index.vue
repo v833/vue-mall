@@ -108,6 +108,7 @@ export default {
 </script>
 
 <style lang="scss">
+  @import '../assets/scss/config';
   @import '../assets/scss/mixin';
   .index {
     .swiper-box {
@@ -148,6 +149,9 @@ export default {
                 @include bgImg(10px, 15px, '/imgs/icon-arrow.png');
                 vertical-align: middle;
               }
+            }
+            &:hover {
+              background-color: $colorA;
             }
           }
         }
