@@ -231,6 +231,7 @@ export default {
                 opacity: 1;
                 height: 220px;
                 transition: all .5s;
+                z-index: 20;
               }
             }
             .children {

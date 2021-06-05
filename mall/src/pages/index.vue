@@ -6,7 +6,16 @@
           <ul class="menu-wrap">
             <li class="menu-item">
               <a href="javescript:;">手机 电话卡</a>
-              <div class="children"></div>
+              <div class="children">
+                <ul v-for="(item, index1) in menuList" :key="index1">
+                  <li v-for="(sub, index) in item" :key="index">
+                    <a :href="sub ? '/#/product/' + sub.id : '' ">
+                      <img :src="sub ? sub.img : '/imgs/item-box-1.png'" alt="">
+                      {{sub ? sub.name : '小米9'}}
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </li>
             <li class="menu-item">
               <a href="javescript:;">电视 盒子</a>
@@ -100,6 +109,30 @@ export default {
           id: '',
           img: '/imgs/slider/slide-5.jpg'
         },
+      ],
+      menuList: [ // 二维数组
+        [
+          {
+            id: 30,
+            img: '/imgs/item-box-1.png',
+            name:'小米CC9'
+          },
+          {
+            id: 31,
+            img: '/imgs/item-box-2.png',
+            name:'小米8青春版'
+          },
+          {
+            id: 32,
+            img: '/imgs/item-box-3.jpg',
+            name:'Redmi K20 Pro'
+          },
+          {
+            id: 33,
+            img: '/imgs/item-box-4.jpg',
+            name:'移动4G专区'
+          }
+        ],[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0]
       ]
     }
   }
@@ -133,6 +166,7 @@ export default {
         padding: 26px 0;
         .menu-wrap {
           .menu-item {
+            // position: relative;
             height: 50px;
             line-height: 50px;
             a {
@@ -152,6 +186,40 @@ export default {
             }
             &:hover {
               background-color: $colorA;
+              .children {
+                display: block;
+              }
+            }
+            .children {
+              display: none;
+              width: 962px;
+              height: 451px;
+              position: absolute;
+              top: 0;
+              left: 264px;
+              border: 1px solid colorH;
+              ul {
+                display: flex;
+                justify-content: space-between;
+                height: 75px;
+                background-color: #fff;
+                li {
+                  height: 75px;
+                  left: 75px;
+                  flex: 1;
+                  padding-left: 23px;
+                }
+                a {
+                  color: $colorB;
+                  font-size: 14px;
+                }
+                img {
+                  width: 42px;
+                  height: 35px;
+                  vertical-align: middle;
+                  margin-right: 15px;
+                }
+              }
             }
           }
         }
