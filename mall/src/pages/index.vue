@@ -90,6 +90,14 @@
       </div>
   </div>
     <service-bar></service-bar>
+    <modal 
+      title="提示"
+      sureText="查看详情"
+      btnType="1"
+      modalType="middle"
+      :showModal="showModal">
+      <template #body> <p>商品添加成功！</p> </template>
+      </modal>
   </div>
 </template>
 
@@ -97,12 +105,14 @@
 import { swiper, swiperSlide} from 'vue-awesome-swiper' // swiper组件很大，按需加载
 import 'swiper/dist/css/swiper.css'
 import ServiceBar from '../components/ServiceBar.vue'
+import Model from '../components/Modal'
 export default {
   name: 'index',
   components: { 
     ServiceBar,
     swiper,
-    swiperSlide
+    swiperSlide,
+    Model
   },
   data () {
     return {
@@ -194,10 +204,10 @@ export default {
       this.axios.get('/products', {
         params: {
           categoryId: 100012,
-          pageSize: 8
+          pageSize: 14
         }
       }).then(res => {
-        this.phoneList = [res.list.slice(0, 4), res.list.slice(4, 8)]
+        this.phoneList = [res.list.slice(6, 10), res.list.slice(10, 14)]
       })
     }
   },
