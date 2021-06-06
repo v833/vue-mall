@@ -52,12 +52,12 @@
         </swiper>
       </div>
       <div class="ads-box">
-        <a :href="'/#/procuct' + item.id" v-for="item of adsList" :key="item.id">
+        <a :href="'/#/product/' + item.id" v-for="item of adsList" :key="item.id">
           <img v-lazy="item.img" alt="">
         </a>
       </div>
       <div class="banner">
-        <a href="/#/procuct/30">
+        <a href="/#/product/30">
           <img v-lazy="'/imgs/banner-1.png'" alt="">
         </a>
       </div>

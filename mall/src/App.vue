@@ -33,8 +33,8 @@ export default {
       })
     },
     getCartCount () {
-      this.axios.get('/carts/products/sum').then(() => {
-        this.$store.dispatch('savaCartCount', res)
+      this.axios.get('/carts/products/sum').then((res) => {
+        this.$store.dispatch('saveCartCount', res)
       })
     }
   },
