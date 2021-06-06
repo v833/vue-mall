@@ -72,7 +72,7 @@
             </a>
           </div>
           <div class="list-box">
-            <div class="list" v-for="(arr, index) of phoneList" :key="index">
+            <div class="list" v-for="(arr, index1) of phoneList" :key="index1">
               <div class="item" v-for="(item, index) of arr" :key="index">
                 <span :class="{'new-pro' : index % 2 == 0}">新品</span>
                 <div class="item-img">
@@ -237,7 +237,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @import '../assets/scss/config';
   @import '../assets/scss/mixin';
   .index {

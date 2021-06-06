@@ -156,8 +156,9 @@ export default {
 
 <style lang="scss">
 @import '../assets/scss/base';
-@import '../assets/scss/mixin';
 @import '../assets/scss/config';
+@import '../assets/scss/mixin';
+
   .header {
     .nav-topbar {
       height: 39px;
@@ -176,6 +177,7 @@ export default {
           background-color: #FF6600;
           text-align: center;
           color: white;
+          margin-right: 0;
           .icon-cart {
             @include bgImg(16px, 12px, '/imgs/icon-cart-checked.png');
           }

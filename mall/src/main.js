@@ -4,8 +4,9 @@ import router from './router'
 import store from './store'
 import axios from 'axios' // 每个页面都要去写，导入
 import VueAxios from 'vue-axios' // 作用域对象挂载在vue实例上
-import env from './env'
+// import env from './env'
 import VueLazyLoad from 'vue-lazyload'
+import VueCookie from 'vue-cookie'
 
 const mock = false; // 希望mock开关打开时被拦截，用require而不是import
 if (mock) {
@@ -29,6 +30,7 @@ axios.interceptors.response.use(function (response) {
     // 路由是挂载在vue实例中 这里是js文件 不能用路由跳转
   } else {
     alert (res.msg)
+    return Promise.reject(res)
   }
 })
 
@@ -36,6 +38,7 @@ Vue.use(VueAxios, axios)
 Vue.use(VueLazyLoad, {
   loading: '/imgs/loading-svg/loading-bars.svg'
 })
+Vue.use(VueCookie)
 Vue.config.productionTip = false
 
 new Vue({
