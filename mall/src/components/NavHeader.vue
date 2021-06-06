@@ -13,7 +13,7 @@
           <a href="javascript:;" v-else @click="login()">登录</a>
           <a href="javascript:;" v-if="username">我的订单</a>
           <a href="javascript:;" v-else>注册</a>
-          <a href="javascript:;" class="my-cart" @click="goToCart()"><span class="icon-cart"></span>购物车</a>
+          <a href="javascript:;" class="my-cart" @click="goToCart()"><span class="icon-cart"></span>购物车({{cartCount}})</a>
         </div>
       </div>
     </div>
@@ -115,11 +115,12 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'nav-header',
   data () {
     return {
-      username: '',
+      // username: this.$store.getters.username,
       phoneList: [],
     }
   },
@@ -131,7 +132,6 @@ export default {
   },
   mounted() {
     this.getProduceList()
-    this.username = this.$store.state.username
   },
   methods: {
     getProduceList () {
@@ -152,6 +152,15 @@ export default {
       this.$router.push('/login')
     }
   },
+  computed: {
+    // username () {
+    //   return this.$store.getters.username
+    // },
+    // cartCount () {
+    //   return this.$store.state.cartCount
+    // }
+    ...mapState(['username', 'cartCount'])
+  }
 
 }
 </script>

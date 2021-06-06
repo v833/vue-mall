@@ -51,6 +51,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'login',
   data () {
@@ -69,7 +70,8 @@ export default {
       }).then(res => {
         this.$cookie.set('userId', res.id, { expires:'1M' })
         // to-do 保存用户名
-        this.$store.commit('updateUsername', this.username)
+        //this.$store.dispatch('saveUsername', res.username)
+        this.saveUsername(res.username)
         this.$router.push('/index')
       })
     },
@@ -79,7 +81,8 @@ export default {
         password: '123',
         email: 'w@163.com'
       }).then(() => alert('register success!'))
-    }
+    },
+    ...mapActions(['saveUsername'])
   }
 }
 </script>
