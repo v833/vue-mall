@@ -2,13 +2,25 @@
 @import './mixin.scss';
 .modal {
   @include position(fixed);
-  z-index: 10;
-  // background-color: #fff;
+    z-index: 10;
+    transition: all .5s;
   .mask {
     @include position(fixed);
-    // background-color: $colorI;
-    background-color: rgba(0, 0, 0 ,.5);
-    
+    background-color: $colorI;
+    opacity: .5;
+    // background-color: rgba(0, 0, 0 ,.5);
+  }
+  &.slide-enter-active {
+    top: 0;
+  }
+  &.slide-leave-active {
+    top: -100%;
+  }
+  &.slide-enter {
+    top: -100%;
+  }
+  &.slideleave-to {
+    top: -100%;
   }
   .modal-dialog {
     @include position(absolute, 40%, 50%, 660px, auto);
