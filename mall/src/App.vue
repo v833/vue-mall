@@ -9,7 +9,7 @@ export default {
   name: 'app',
   data () {
     return {
-      res: {}
+
     }
   },
   mounted() {
@@ -21,8 +21,22 @@ export default {
     // 本地集成mockjs实现数据mock 没有发送真正的请求，代码阶段拦截
     // this.axios.get('/user/login').then(res => {
     //   this.res = res
+    this.getUser();
+    this.getCartCount()
     // })
   },
+  methods: {
+    getUser () {
+      this.axios.get('/user').then(() => {
+        // to-do 保存到vuex
+      })
+    },
+    getCartCount () {
+      this.axios.get('/carts/products/sum').then(() => {
+
+      })
+    }
+  }
 }
 </script>
 

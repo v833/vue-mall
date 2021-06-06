@@ -23,14 +23,17 @@ axios.defaults.timeout = 8000; // 超时时间
 // 接口错误拦截
 axios.interceptors.response.use(function (response) {
   let res = response.data;
+  let path = location.hash;
   if (res.status == 0) { // 成功
     return res.data
   } else if (res.status == 10) { // 未登录 自定义状态码
+    if (path !== '#/index') { // 处于首页不需要跳转login
     window.location.href = '/#/login'
-    // 路由是挂载在vue实例中 这里是js文件 不能用路由跳转
+      // 路由是挂载在vue实例中 这里是js文件 不能用路由跳转
+    }
   } else {
     alert (res.msg)
-    return Promise.reject(res)
+    // return Promise.reject(res)
   }
 })
 

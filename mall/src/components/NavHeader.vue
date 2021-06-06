@@ -131,6 +131,7 @@ export default {
   },
   mounted() {
     this.getProduceList()
+    this.username = this.$store.state.username
   },
   methods: {
     getProduceList () {
@@ -151,6 +152,7 @@ export default {
       this.$router.push('/login')
     }
   },
+
 }
 </script>
 
