@@ -5,6 +5,7 @@
         <button class="btn">立即购买</button>
       </template>
     </product-param>
+    <div class="h"></div>
   </div>
 </template>
 
@@ -14,10 +15,13 @@ export default {
   name: 'product',
   components: {
     ProductParam
-  }
+  },
+
 }
 </script>
 
-<style lang="">
-  
+<style lang="scss" scoped>
+  .h {
+    height: 1000px;
+  }
 </style>

@@ -30,7 +30,7 @@ const routes = [
       {
         path: 'product/:id',
         name: 'product',
-        component: Product
+        component: Product,
       },
       {
         path: 'detail/:id',
@@ -79,7 +79,12 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
+  scrollBehavior (to, from, savePosition) {
+    if (savePosition) return savePosition
+    return {x: 0, y: 0}
+  }, // 记录上次访问页面滚动的位置
+  
 })
 
 export default router
