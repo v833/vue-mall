@@ -81,7 +81,7 @@ const routes = [
 const router = new VueRouter({
   routes,
   scrollBehavior (to, from, savePosition) {
-    if (savePosition) return savePosition
+    // if (savePosition) return savePosition
     return {x: 0, y: 0}
   }, // 记录上次访问页面滚动的位置
   

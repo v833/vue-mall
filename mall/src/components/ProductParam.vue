@@ -28,7 +28,6 @@ export default {
   methods: {
     initHeight () {
       let scrollTop = window.scrollY || document.documentElement.scrollTop || document.scrollTop;
-      console.log(scrollTop);
       this.isFixed = scrollTop > 152
     }
   },
