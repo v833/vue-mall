@@ -25,6 +25,9 @@ export default {
     this.getCartCount()
     // })
   },
+  // updated () {
+  //   this.getCartCount()
+  // },
   methods: {
     getUser () {
       this.axios.get('/user').then((res) => {

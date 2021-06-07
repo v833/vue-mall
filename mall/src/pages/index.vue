@@ -215,13 +215,12 @@ export default {
       })
     },
     addCart (productId) {
-      this.showModal = true
-      return
       this.axios.post('/carts', {
         productId,
         selected: true
-      }).then(() => {
-
+      }).then((res) => {
+        this.showModal = true
+        this.$store.dispatch('saveCartCount', res.cartTotalQuantity);
       }).catch(() => {
         this.showModal = true
       })
