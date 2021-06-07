@@ -49,11 +49,15 @@ export default {
       font-size: 28px;
       float: left;
       color: #333;
+      h2 {
+        font-size: 28px;
+        color: #333;
+      }
       span {
         font-size: 14px;
         margin-left: 17px;
         color: #999;
-        font-weight: bold;
+        font-weight: 200;
       }
     }
     .username {

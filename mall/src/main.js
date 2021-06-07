@@ -7,6 +7,8 @@ import VueAxios from 'vue-axios' // 作用域对象挂载在vue实例上
 // import env from './env'
 import VueLazyLoad from 'vue-lazyload'
 import VueCookie from 'vue-cookie'
+import { Message } from 'element-ui'
+// import 'element-ui/lib/theme-chalk/index.css'
 
 const mock = false; // 希望mock开关打开时被拦截，用require而不是import
 if (mock) {
@@ -31,9 +33,8 @@ axios.interceptors.response.use(function (response) {
       window.location.href = '/#/login'
       // 路由是挂载在vue实例中 这里是js文件 不能用路由跳转
     }
-    return Promise.reject(res)
   } else {
-    alert (res.msg)
+    Message.warning(res.msg)
     return Promise.reject(res)
   }
 })
@@ -44,6 +45,7 @@ Vue.use(VueLazyLoad, {
 })
 Vue.use(VueCookie)
 Vue.config.productionTip = false
+Vue.prototype.$message = Message;
 
 new Vue({
   router,

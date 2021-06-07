@@ -52,6 +52,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+import { Message } from 'element-ui'
 export default {
   name: 'login',
   data () {
@@ -80,7 +81,7 @@ export default {
         username: 'wangqun',
         password: '123',
         email: 'w@163.com'
-      }).then(() => alert('register success!'))
+      }).then(() => Message.success('register success!'))
     },
     ...mapActions(['saveUsername'])
   }
