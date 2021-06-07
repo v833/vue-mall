@@ -1,6 +1,6 @@
 <template>
   <div>
-    orderComfirm
+    confirm
   </div>
 </template>
 
