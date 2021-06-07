@@ -1,6 +1,6 @@
 <template>
   <div class="product">
-    <product-param>
+    <product-param :title="product.name">
       <template #buy>
         <button class="btn">立即购买</button>
       </template>
@@ -34,7 +34,7 @@
             <!-- Optional controls -->
             <div class="swiper-pagination" slot="pagination"></div>
         </swiper>
-        <p class="desc">小米8 AI变焦双摄拍摄</p>
+        <p class="desc">AI变焦双摄拍摄</p>
       </div>
       <div class="item-video">
         <h2>60帧超慢动作摄影<br/>慢慢回味每一瞬间的精彩</h2>
@@ -85,7 +85,16 @@ export default {
         this.showSlide = false
       }, 600)
     },
-  }
+    getProductInfo () {
+      let id = this.$route.params.id;
+      this.axios.get(`/products/${id}`).then(res => {
+        this.product = res
+      })
+    }
+  },
+  mounted() {
+    this.getProductInfo ()
+  },
 
 }
 </script>
