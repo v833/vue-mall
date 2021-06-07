@@ -2,7 +2,7 @@
   <div class="product">
     <product-param :title="product.name">
       <template #buy>
-        <button class="btn">立即购买</button>
+        <button class="btn" @click="buy">立即购买</button>
       </template>
     </product-param>
     <div class="content">
@@ -90,6 +90,9 @@ export default {
       this.axios.get(`/products/${id}`).then(res => {
         this.product = res
       })
+    },
+    buy () {
+      this.$router.push(`/detail/${this.$route.params.id}`)
     }
   },
   mounted() {
