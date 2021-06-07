@@ -25,7 +25,7 @@ const routes = [
       {
         path: 'index',
         name: 'index',
-        component: Index
+        component: Index,
       },
       {
         path: 'product/:id',

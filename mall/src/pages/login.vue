@@ -17,7 +17,7 @@
             <input type="text" placeholder="请输入帐号" v-model="username" />
           </div>
           <div class="input">
-            <input type="password" placeholder="请输入密码" v-model="password" />
+            <input type="password" placeholder="请输入密码" v-model="password" @keyup.enter="login"/>
           </div>
           <div class="btn-box">
             <a class="btn" @click="login">登录</a>
@@ -69,11 +69,17 @@ export default {
         username: this.username,
         password: this.password
       }).then(res => {
-        this.$cookie.set('userId', res.id, { expires:'1M' })
+        this.$cookie.set('userId', res.id, { expires:'Session' })
         // to-do 保存用户名
         //this.$store.dispatch('saveUsername', res.username)
         this.saveUsername(res.username)
-        this.$router.push('/index')
+        this.$router.push({
+          name: 'index',
+          params: {
+            from: 'login'
+          }
+        })
+        
       })
     },
     register () {
@@ -83,7 +89,7 @@ export default {
         email: 'w@163.com'
       }).then(() => Message.success('register success!'))
     },
-    ...mapActions(['saveUsername'])
+    ...mapActions(['saveUsername', 'saveCartCount'])
   }
 }
 </script>
