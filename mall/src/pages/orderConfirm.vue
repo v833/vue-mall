@@ -164,7 +164,7 @@
             </select>
           </div>
           <div class="item">
-            <textarea name="street" v-model="checkedItem.receiverAddress"></textarea>
+            <textarea name="street" v-model="checkedItem.receiverAddress" placeholder="详细地址"></textarea>
           </div>
           <div class="item">
             <input type="text" class="input" placeholder="邮编" v-model="checkedItem.receiverZip" />
@@ -210,6 +210,7 @@ export default {
   mounted() {
     this.getAddressList();
     this.getCartList();
+    console.log(this);
   },
   methods: {
     getAddressList() {
@@ -223,7 +224,7 @@ export default {
       this.checkedItem = {};
       this.showEditModal = true;
     },
-    // 打开新增地址弹框
+    // 编辑地址弹框
     editAddressModal(item) {
       this.userAction = 1;
       this.checkedItem = item;
@@ -238,8 +239,8 @@ export default {
     submitAddress() {
       let { checkedItem, userAction } = this;
       let method,
-        url,
-        params = {};
+          url,
+          params = {};
       if (userAction == 0) {
         (method = "post"), (url = "/shippings");
       } else if (userAction == 1) {
@@ -249,14 +250,14 @@ export default {
       }
       if (userAction == 0 || userAction == 1) {
         let {
-          receiverName,
-          receiverMobile,
-          receiverProvince,
-          receiverCity,
-          receiverDistrict,
-          receiverAddress,
-          receiverZip
-        } = checkedItem;
+            receiverName,
+            receiverMobile,
+            receiverProvince,
+            receiverCity,
+            receiverDistrict,
+            receiverAddress,
+            receiverZip
+            } = checkedItem;
         let errMsg = "";
         if (!receiverName) {
           errMsg = "请输入收货人名称";
@@ -513,6 +514,7 @@ export default {
         padding: 13px 15px;
         box-sizing: border-box;
         border: 1px solid #e5e5e5;
+        resize: none;
       }
     }
   }
