@@ -13,6 +13,7 @@ module.exports = {
           '/api': ''
         }
       }
-    }
+    },
+    // productionSourceMap: false
   }
 }
