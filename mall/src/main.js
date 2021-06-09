@@ -35,9 +35,14 @@ axios.interceptors.response.use(function (response) {
     }
   } else {
     Message.warning(res.msg)
-    return Promise.reject(res)
+    return Promise.reject(res) // 不抛出认为是成功状态
   }
+}, (error) => { // 状态码拦截 请求发送失败
+  let res = error.response;
+  Message.error(res.data.message)
+  return Promise.reject(res)
 })
+
 
 Vue.use(VueAxios, axios)
 Vue.use(VueLazyLoad, {
