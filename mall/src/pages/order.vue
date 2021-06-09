@@ -1,11 +1,11 @@
 <template>
   <div>
     <order-header :title="title">
-      <template #describtion>
+      <template #describtion >
         <span>{{tip}}</span>
       </template>
     </order-header>
-    <router-view></router-view>
+    <router-view/>
     <service-bar></service-bar>
     <nav-footer></nav-footer>
   </div>
@@ -41,6 +41,7 @@ export default {
       this.tip = "请谨防钓鱼链接或诈骗电话"
     }
   },
+
 }
 </script>
 

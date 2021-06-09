@@ -29,7 +29,7 @@
                   </div>
                   <div class="good-name">
                     <div class="p-name">{{item.productName}}</div>
-                    <div class="p-money">{{item.totalPrice + 'X' + item.quantity}}元</div>
+                    <div class="p-money">{{item.totalPrice + ' X ' + item.quantity}} 元</div>
                   </div>
                 </div>
               </div>
@@ -174,7 +174,7 @@
     }
   }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
   @import './../assets/scss/config.scss';
   @import './../assets/scss/mixin.scss';
   .order-list{
