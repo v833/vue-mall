@@ -818,4 +818,196 @@ js.map 源码存放 上线后删除
 /\d{11}/.text(arg) 
 ```
 
+### 订单支付
+
+```
+    paySubmit(payType){
+      if(payType == 1){
+        window.open('/#/order/alipay?orderId='+this.orderId,'_blank');
+        // 可以打开新窗口 window.open(URL,name,specs,replace) specs: '_blank&_self'
+      }else{
+        this.axios.post('/pay',{
+          orderId:this.orderId,
+          orderName:'Vue高仿小米商城',
+          amount:0.01,//单位元
+          payType:2 //1支付宝，2微信
+        }).then((res)=>{
+          QRCode.toDataURL(res.content)
+          .then(url => {
+            this.showPay = true;
+            this.payImg = url;
+            this.loopOrderState();
+          })
+          .catch(() => {
+            this.$message.error('微信二维码生成失败，请稍后重试');
+          })
+        })
+      }
+    },
+```
+
+```
+    paySubmit () {
+      this.axios.post('/pay', {
+        orderId: this.orderId,
+        orderName: 'Vue高仿小米',
+        amount: 0.01,
+        payType: 1
+      }).then((res) => {
+        this.content = res.content
+        setTimeout (() => { document.forms[0].submit() }, 100) // 提交表单
+      })
+    }
+```
+
+### 支付对接
+
+调用后端接口，
+
+传入订单id，商品名称，金额，支付类型，
+
+得到表单 通过v-html赋值 通过document.forms[0].submit() 提交 (做一个中间页面)
+
+```
+          QRCode.toDataURL(res.content)
+          .then(url => { // 转换成base64
+            this.showPay = true;
+            this.payImg = url;
+            this.loopOrderState();
+          })
+          .catch(() => {
+            this.$message.error('微信二维码生成失败，请稍后重试');
+          })
+```
+
+```
+    // 轮询当前订单支付状态
+    loopOrderState(){
+      this.T = setInterval(()=>{
+        this.axios.get(`/orders/${this.orderId}`).then((res)=>{
+          if(res.status == 20){
+            clearInterval(this.T);
+            this.goOrderList();
+          }
+        })
+      },1000);
+    }, // 如果用户已经支付，自动跳转
+```
+
+```
+axios.interceptors.response.use(function (response) {
+  let res = response.data;
+  let path = location.hash;
+  if (res.status == 0) { // 成功
+    return res.data
+  } else if (res.status == 10) { // 未登录 自定义状态码
+    if (path !== '#/index') { // 处于首页不需要跳转login
+      window.location.href = '/#/login'
+      // 路由是挂载在vue实例中 这里是js文件 不能用路由跳转
+    }
+  } else {
+    Message.warning(res.msg)
+    return Promise.reject(res) // 不抛出认为是成功状态
+  }
+}, (error) => { // 状态码拦截 请求发送失败
+  let res = error.response;
+  Message.error(res.data.message)
+  return Promise.reject(res)
+})
+```
+
+### 订单列表
+
+```
+  import { Pagination,Button } from 'element-ui'
+  import infiniteScroll from 'vue-infinite-scroll'
+```
+
+```
+    <el-pagination
+            v-if="false"
+            class="pagination"
+            background
+            layout="prev, pager, next"
+            :pageSize="pageSize"    // :pageSize="pageSize"
+            :total="total"
+            @current-change="handleChange"
+            >
+          </el-pagination>
+    components:{
+      OrderHeader,
+      Loading,
+      NoData,
+      [Pagination.name]:Pagination, // 使用方法
+      [Button.name]:Button
+    },
+```
+
+```
+      // 第一种方法：分页器
+      handleChange(pageNum){
+        this.pageNum = pageNum;
+        this.getOrderList();
+      },    // 向右：添加text-align: right
+```
+
+```
+     // 第二种方法：加载更多按钮
+    loadMore(){
+        this.pageNum++;
+        this.getOrderList();
+      },
+```
+
+```
+      // 第三种方法：滚动加载，通过npm插件实现
+      npm i infinite-scroll 是一个指令
+       directives: {
+       	infiniteScroll
+       }
+       
+          <div class="scroll-more"
+            v-infinite-scroll="scrollMore"
+            infinite-scroll-disabled="true"
+            infinite-scroll-distance="410"
+            v-if="true"
+          >
+            <img src="/imgs/loading-svg/loading-spinning-bubbles.svg" alt="" v-show="loading">
+          </div>
+
+      scrollMore(){
+        this.busy = true;
+        setTimeout(()=>{
+          this.pageNum++;
+          this.getList();
+        },500);
+      },
+      // 专门给scrollMore使用
+      getList(){
+        this.loading = true;
+        this.axios.get('/orders',{
+          params:{
+            pageSize:10,
+            pageNum:this.pageNum
+          }
+        }).then((res)=>{
+          this.list = this.list.concat(res.list);
+          this.loading = false;
+          if(res.hasNextPage){
+            this.busy=false;
+          }else{
+            this.busy=true;
+          }
+        });
+```
+
+### 优化
+
+```
+component: () => import('../pages/product.vue') // 预加载，文件加载进html，等待空闲时生成js文件。
+实现真正按需加载：
+    chainWebpack: (config) => {
+      config.plugins.delete('prefetch')
+    }
+```
 
